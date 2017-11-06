@@ -1,0 +1,20 @@
+---
+title: "Classification of mRNA and lncRNA sequences using complex network theory"
+author: "Eric Augusto Ito"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Classification of mRNA and lncRNA sequences}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+This packet is intended to classify two or three RNA classes using complex networks. Two parameters are required: word and step size. Amboms aims to define how the network will be created from the RNA sequences. At the end of the process the result of the classification is demonstrated using two classifying algorithms: J48 and Random Forest
+
+## classification()
+In this function the whole process is adopted for the classification of RNA sequences.
+The first step is the generation of networks from the sequences contained in FASTA type files, so it is necessary to define 2 parameters in the function call, being 'word' and 'step'. The 'word' aims to define the size of the word that corresponds to a vertex of the network, so if the word is set to 1 the words will be A, G, U, C, if the word is 2 then the words will be formed by two nucleotides, such as AG, GC, UA, GA and others. The step parameter defines the distance traveled in the nucleotides of the sequence for the formation of a new binding. With these two parameters defined the network will be generated so that every two words a connection is created and that to form a new connection a distance X defined by the 'step' is traversed.
+The second step is the abstraction of network topology characteristics for the sequence classification. There are 10 measures: average minimum path, cluster coefficient, degree, assortativity, betweenness, standard deviation, maximum, minimum number of motifs of size 3 and number of motifs of size 4. Each time the measurements are removed the application of a threshold in the sequence that has as function to make a cut in the weakest aretas of the network, beginning by the edges that has weight 1 and increasing this value in 1 with each withdrawal of the measurements. After applying the threshold on the network, the 10 measurements are taken again to remove characteristics of the new network. This step loops until the network no longer has edges.
+The third step and last step is the generation of an arff file and the classification of the sequences with the algorithms J48 and Random Forest
