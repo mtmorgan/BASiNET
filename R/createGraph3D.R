@@ -9,6 +9,7 @@
 #'@param matrix1 matrix of the first measure for the creation of the three-dimensional chart
 #'@param matrix2 matrix of the second measure for the creation of the three-dimensional chart
 #'@param numSeqMRNA number of mRNA sequences
+#'@param numSeqLNCRNA number of lncRNA sequences
 #'@param nameMeasure1 name of the first measure to put in the title of the graph
 #'@param nameMeasure2 name of the second measure to put in the title of the graph
 #'
@@ -25,7 +26,8 @@
 #' @import rgl
 
 
-createGraph3D <- function(matrix1, matrix2, numSeqMRNA, nameMeasure1, nameMeasure2){
+
+createGraph3D <- function(matrix1, matrix2, numSeqMRNA, numSeqLNCRNA, nameMeasure1, nameMeasure2){
 
 	somador<-(1/(length(matrix1[1,])-1))
 	threshold<-seq(0,1,somador)
@@ -35,7 +37,11 @@ createGraph3D <- function(matrix1, matrix2, numSeqMRNA, nameMeasure1, nameMeasur
 		if(i<=numSeqMRNA){
 			lines3d(matrix1[i,], matrix2[i,], threshold,color=c("blue"))	
 		}else{
-			lines3d(matrix1[i,], matrix2[i,], threshold,color=c("red"))	
+			if(i<=(numSeqLNCRNA+numSeqMRNA)){
+				lines3d(matrix1[i,], matrix2[i,], threshold,color=c("red"))	
+			}else{
+				lines3d(matrix1[i,], matrix2[i,], threshold,color=c("green"))	
+			}
 		}
 	}
 

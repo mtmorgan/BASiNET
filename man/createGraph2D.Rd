@@ -4,12 +4,14 @@
 \alias{createGraph2D}
 \title{Creates an undirected graph from a biological sequence}
 \usage{
-createGraph2D(matrix, numSeqMRNA, nameMeasure)
+createGraph2D(matrix, numSeqMRNA, numSeqLNCRNA, nameMeasure)
 }
 \arguments{
 \item{matrix}{matrix of the measure for the creation of two-dimensional graph}
 
 \item{numSeqMRNA}{number of mRNA sequences}
+
+\item{numSeqLNCRNA}{number of lncRNA sequences}
 
 \item{nameMeasure}{name of the measure to put in the title of the graph}
 }

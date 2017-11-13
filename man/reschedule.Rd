@@ -2,10 +2,9 @@
 % Please edit documentation in R/reschedule.R
 \name{reschedule}
 \alias{reschedule}
-\alias{reescalar}
 \title{rescales the results between values ​​from 0 to 1}
 \usage{
-reescalar(matrix, mRNA, lncRNA, sncRNA)
+reschedule(matrix, mRNA, lncRNA, sncRNA)
 }
 \arguments{
 \item{matrix}{array with results}

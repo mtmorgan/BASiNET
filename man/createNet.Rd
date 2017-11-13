@@ -27,7 +27,6 @@ of the' step 'parameter that indicates the next connection to be formed
 }
 \examples{
 
-
 }
 \seealso{
 

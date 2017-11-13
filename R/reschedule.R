@@ -22,8 +22,7 @@
 #' @examples
 #'
 
-
-reescalar <- function(matrix, mRNA, lncRNA, sncRNA){
+reschedule <- function(matrix, mRNA, lncRNA, sncRNA){
 	maxMin<-range(matrix[1:mRNA,],na.rm = TRUE)
 	max<-maxMin[2]
 	min<-maxMin[1]

@@ -4,7 +4,8 @@
 \alias{createGraph3D}
 \title{Creates an untargeted graph from a biological sequence}
 \usage{
-createGraph3D(matrix1, matrix2, numSeqMRNA, nameMeasure1, nameMeasure2)
+createGraph3D(matrix1, matrix2, numSeqMRNA, numSeqLNCRNA, nameMeasure1,
+  nameMeasure2)
 }
 \arguments{
 \item{matrix1}{matrix of the first measure for the creation of the three-dimensional chart}
@@ -12,6 +13,8 @@ createGraph3D(matrix1, matrix2, numSeqMRNA, nameMeasure1, nameMeasure2)
 \item{matrix2}{matrix of the second measure for the creation of the three-dimensional chart}
 
 \item{numSeqMRNA}{number of mRNA sequences}
+
+\item{numSeqLNCRNA}{number of lncRNA sequences}
 
 \item{nameMeasure1}{name of the first measure to put in the title of the graph}
 

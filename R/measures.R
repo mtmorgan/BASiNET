@@ -23,6 +23,7 @@
 #' @import igraph
 
 
+
 measures <- function(graph){
 	measures<-c()
 	measures<-c(measures,average.path.length(graph,directed=FALSE,unconnected=FALSE))

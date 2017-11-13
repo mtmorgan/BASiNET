@@ -18,9 +18,11 @@
 #'
 #' @seealso 
 #'
-#' @examples
-#' 
+#'@examples
 #'
+
+
+
 
 createNet <- function(word, step, sequence){
 	aux<-""

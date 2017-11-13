@@ -24,11 +24,11 @@
 #' @seealso
 #'
 #' @examples
-#' arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "classificador")
-#' arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "classificador")
-#' classification(3, 3, arqSeqMRNA,arqSeqLNCRNA)
+#' arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
+#' arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
+#' classification(3, 3, arqSeqMRNA,arqSeqLNCRNA, graphic=TRUE, graphic3D=TRUE)
 #'
-#' @import seqinr 
+#' @importFrom Biostrings readBStringSet
 #' @import igraph
 #' @import RWeka
 #' @import randomForest
@@ -36,11 +36,11 @@
 
 classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D){
 
-	seqMRNA<-read.fasta(file=mRNA,forceDNAtolower=FALSE)
-	seqLNCRNA<-read.fasta(file=lncRNA,forceDNAtolower=FALSE)
+	seqMRNA<-readBStringSet(mRNA)
+	seqLNCRNA<-readBStringSet(lncRNA)
 
 	if(!missing(sncRNA)){
-		seqSNCRNA<-read.fasta(file=sncRNA,forceDNAtolower=FALSE)
+		seqSNCRNA<-readBStringSet(sncRNA)
 		numClass<-3
 	}else{
 		seqSNCRNA<-NULL
@@ -84,7 +84,8 @@ classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D)
 		for(x in 1:length(seq)){
 			print(x)
 			limitThreshold<-0
-			sequence<-getSequence(seq[[x]])
+			sequence<-strsplit(toString(seq[x]),split='')
+			sequence<-sequence[[1]]
 			net<-createNet(word, step, sequence)
 			limitThreshold<-max(net[])
 
@@ -120,25 +121,25 @@ classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D)
 	}
 	print("Rescaling values")
 	numCol<-length(caminhoMinimoMedio[1,])
-	caminhoMinimoMedio<-reescalar(caminhoMinimoMedio,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	caminhoMinimoMedio<-reschedule(caminhoMinimoMedio,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(caminhoMinimoMedio) <- paste('CMM',1:numCol)
-	coeficienteDeCluster<-reescalar(coeficienteDeCluster,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	coeficienteDeCluster<-reschedule(coeficienteDeCluster,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(coeficienteDeCluster) <- paste('CdC', 1:numCol)
-	desvioPadrao<-reescalar(desvioPadrao,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	desvioPadrao<-reschedule(desvioPadrao,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(desvioPadrao) <- paste('DP', 1:numCol)
-	maximo<-reescalar(maximo,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	maximo<-reschedule(maximo,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(maximo) <- paste('MAX', 1:numCol)
-	assortativity<-reescalar(assortativity,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	assortativity<-reschedule(assortativity,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(assortativity) <- paste('ASS', 1:numCol)
-	betweenness<-reescalar(betweenness,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	betweenness<-reschedule(betweenness,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(betweenness) <- paste('BET', 1:numCol)
-	degree<-reescalar(degree,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	degree<-reschedule(degree,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(degree) <- paste('DEG', 1:numCol)
-	minimo<-reescalar(minimo,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	minimo<-reschedule(minimo,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(minimo) <- paste('MIN', 1:numCol)
-	motifs3<-reescalar(motifs3,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	motifs3<-reschedule(motifs3,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(motifs3) <- paste('MT3', 1:numCol)
-	motifs4<-reescalar(motifs4,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	motifs4<-reschedule(motifs4,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(motifs4) <- paste('MT4', 1:numCol)
 
 	listMatrix<-list(caminhoMinimoMedio,coeficienteDeCluster,desvioPadrao,maximo,assortativity,betweenness,degree,minimo,motifs3,motifs4)
@@ -150,17 +151,17 @@ classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D)
 	}else{
 		if(graphic==TRUE){
 			for(i in 1:10){
-				createGraph2D(listMatrix[[i]],length(seqMRNA), namesMeasure[i])
+				createGraph2D(listMatrix[[i]],length(seqMRNA),length(seqLNCRNA), namesMeasure[i])
 			}
 		}
 	}	
-	if(missing(graphic3D)||graphic==FALSE){
+	if(missing(graphic3D)||graphic3D==FALSE){
 	}else{
 		if(graphic3D==TRUE){
 			for(x in 1:10){
 				for(y in 1:10){
 					if(y>x){
-						createGraph3D(listMatrix[[x]],listMatrix[[y]],length(seqMRNA),namesMeasure[x],namesMeasure[y])
+						createGraph3D(listMatrix[[x]],listMatrix[[y]],length(seqMRNA),length(seqLNCRNA),namesMeasure[x],namesMeasure[y])
 					}
 				}
 			}

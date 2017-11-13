@@ -21,7 +21,7 @@
 #'
 #'
 #' @import igraph
-#' 
+
 
 
 threshold <- function(x, net){

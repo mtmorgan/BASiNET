@@ -35,9 +35,9 @@ also the graphic parameter that when TRUE generates graphs based on the results 
 
 }
 \examples{
-arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "classificador")
-arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "classificador")
-classification(3, 3, arqSeqMRNA,arqSeqLNCRNA)
+arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
+arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
+classification(3, 3, arqSeqMRNA,arqSeqLNCRNA, graphic=TRUE, graphic3D=TRUE)
 
 }
 \seealso{

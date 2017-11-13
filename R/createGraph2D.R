@@ -8,6 +8,7 @@
 #'
 #'@param matrix matrix of the measure for the creation of two-dimensional graph
 #'@param numSeqMRNA number of mRNA sequences
+#'@param numSeqLNCRNA number of lncRNA sequences
 #'@param nameMeasure name of the measure to put in the title of the graph
 #'
 #'@details
@@ -22,7 +23,8 @@
 #'
 #' @import igraph
 
-createGraph2D <- function(matrix, numSeqMRNA, nameMeasure){
+
+createGraph2D <- function(matrix, numSeqMRNA,numSeqLNCRNA, nameMeasure){
 
 	dev.new()
 	somador<-(1/(length(matrix[1,])-1))
@@ -33,7 +35,11 @@ createGraph2D <- function(matrix, numSeqMRNA, nameMeasure){
 		if(i<=numSeqMRNA){
 			lines(threshold, matrix[i,] , type="l", pch=22, lty=2, col="blue")	
 		}else{
-			lines(threshold, matrix[i,] , type="l", pch=22, lty=2, col="red")	
+			if(i<=(numSeqLNCRNA+numSeqMRNA)){
+				lines(threshold, matrix[i,] , type="l", pch=22, lty=2, col="red")
+			}else{
+				lines(threshold, matrix[i,] , type="l", pch=22, lty=2, col="green")
+			}	
 		}
 	}
 	legend((length(matrix[1,])-40), matrix[which.max(matrix)], c(1:2), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2)
