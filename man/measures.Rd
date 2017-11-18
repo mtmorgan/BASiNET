@@ -11,7 +11,7 @@ measures(graph)
 }
 \value{
 Vector with the results of the measurements in order:
-Average path length, cluster coefficient, degree, assortativity,
+Average shortest path length, clustering Coefficient, degree, assortativity,
 betweenness, standard deviation, maximum, minimum, number of motifs
 size 3 and number of motifs of size 4
 }

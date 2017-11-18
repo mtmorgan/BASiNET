@@ -4,16 +4,16 @@
 \alias{classification}
 \title{Performs the classification methodology using complex network theory}
 \usage{
-classification(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D)
+classification(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D)
 }
 \arguments{
-\item{word}{Size of the word to parse}
-
-\item{step}{# to be given to each call}
-
 \item{mRNA}{Directory where the file lies with the mRNA sequences}
 
 \item{lncRNA}{Directory where the file is located fasta with lncRNA sequences}
+
+\item{word}{Size of the word to parse. By default the word parameter is set to 3}
+
+\item{step}{Determines the distance that will be traversed in the sequences for creating a new connection. By default the step parameter is set to 1}
 
 \item{sncRNA}{Directory where the file is located fasta with the sncRNA sequences (OPTIONAL)}
 
@@ -37,7 +37,7 @@ also the graphic parameter that when TRUE generates graphs based on the results 
 \examples{
 arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
 arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
-classification(3, 3, arqSeqMRNA,arqSeqLNCRNA, graphic=TRUE, graphic3D=TRUE)
+classification(mRNA = arqSeqMRNA, lncRNA = arqSeqLNCRNA, word = 3, step = 3, graphic = TRUE, graphic3D = TRUE)
 
 }
 \seealso{

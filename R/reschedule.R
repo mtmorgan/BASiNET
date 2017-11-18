@@ -1,4 +1,4 @@
-#'@title rescales the results between values ​​from 0 to 1
+#'@title Rescales the results between values ​​from 0 to 1
 #'@name reschedule
 #'
 #'@description Given the results the data is rescaled

@@ -7,10 +7,10 @@
 #'a file of type arff called' result 'with all values ​​so that it can be used later. There is
 #'also the graphic parameter that when TRUE generates graphs based on the results of each measure.
 #'
-#'@param word Size of the word to parse
-#'@param step # to be given to each call
 #'@param mRNA Directory where the file lies with the mRNA sequences
 #'@param lncRNA Directory where the file is located fasta with lncRNA sequences
+#'@param word Size of the word to parse. By default the word parameter is set to 3
+#'@param step Determines the distance that will be traversed in the sequences for creating a new connection. By default the step parameter is set to 1
 #'@param sncRNA Directory where the file is located fasta with the sncRNA sequences (OPTIONAL)
 #'@param graphic TRUE or FALSE for graphics generation. As default graphic gets FALSE
 #'@param graphic3D TRUE or FALSE for 3D graphics generation. As default graphic3D gets FALSE
@@ -26,7 +26,7 @@
 #' @examples
 #' arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
 #' arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
-#' classification(3, 3, arqSeqMRNA,arqSeqLNCRNA, graphic=TRUE, graphic3D=TRUE)
+#' classification(mRNA = arqSeqMRNA, lncRNA = arqSeqLNCRNA, word = 3, step = 3, graphic = TRUE, graphic3D = TRUE)
 #'
 #' @importFrom Biostrings readBStringSet
 #' @import igraph
@@ -34,7 +34,14 @@
 #' @import randomForest
 #' @export
 
-classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D){
+classification <- function(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D){
+
+	if(missing(word)){
+		word<-3
+	}
+	if(missing(step)){
+		step <- 1
+	}
 
 	seqMRNA<-readBStringSet(mRNA)
 	seqLNCRNA<-readBStringSet(lncRNA)
@@ -48,14 +55,14 @@ classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D)
 	}
 
 	numSeq<-(length(seqMRNA)+length(seqLNCRNA)+length(seqSNCRNA))
-	caminhoMinimoMedio <- matrix(nrow=numSeq,ncol=1)    
-	coeficienteDeCluster <- matrix(nrow=numSeq,ncol=1) 
-	desvioPadrao <- matrix(nrow=numSeq,ncol=1) 
-	maximo <- matrix(nrow=numSeq,ncol=1) 
+	averageShortestPathLengths <- matrix(nrow=numSeq,ncol=1)    
+	clusteringCoefficient <- matrix(nrow=numSeq,ncol=1) 
+	standardDeviation <- matrix(nrow=numSeq,ncol=1) 
+	maximum <- matrix(nrow=numSeq,ncol=1) 
 	assortativity<- matrix(nrow=numSeq,ncol=1) 
 	betweenness <- matrix(nrow=numSeq,ncol=1) 
 	degree <- matrix(nrow=numSeq,ncol=1) 
-	minimo <- matrix(nrow=numSeq,ncol=1) 
+	minimum <- matrix(nrow=numSeq,ncol=1) 
 	motifs3 <- matrix(nrow=numSeq,ncol=1) 
 	motifs4 <- matrix(nrow=numSeq,ncol=1)
 
@@ -90,29 +97,29 @@ classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D)
 			limitThreshold<-max(net[])
 
 			for(t in 1:limitThreshold){
-				if(t>length(caminhoMinimoMedio[1,])){
-					caminhoMinimoMedio <- cbind(caminhoMinimoMedio,matrix(nrow=numSeq,ncol=1))
-					coeficienteDeCluster <- cbind(coeficienteDeCluster,matrix(nrow=numSeq,ncol=1))
-					desvioPadrao <- cbind(desvioPadrao,matrix(nrow=numSeq,ncol=1))
-					maximo <- cbind(maximo,matrix(nrow=numSeq,ncol=1))
+				if(t>length(averageShortestPathLengths[1,])){
+					averageShortestPathLengths <- cbind(averageShortestPathLengths,matrix(nrow=numSeq,ncol=1))
+					clusteringCoefficient <- cbind(clusteringCoefficient,matrix(nrow=numSeq,ncol=1))
+					standardDeviation <- cbind(standardDeviation,matrix(nrow=numSeq,ncol=1))
+					maximum <- cbind(maximum,matrix(nrow=numSeq,ncol=1))
 					assortativity <- cbind(assortativity,matrix(nrow=numSeq,ncol=1))
 					betweenness <- cbind(betweenness,matrix(nrow=numSeq,ncol=1))
 					degree <-cbind(degree,matrix(nrow=numSeq,ncol=1))
-					minimo <- cbind(minimo,matrix(nrow=numSeq,ncol=1))
+					minimum <- cbind(minimum,matrix(nrow=numSeq,ncol=1))
 					motifs3 <- cbind(motifs3,matrix(nrow=numSeq,ncol=1))
 					motifs4 <- cbind(motifs4,matrix(nrow=numSeq,ncol=1))
 				}
 
 				net<-threshold(t, net)
 				vector<-measures(net)
-				caminhoMinimoMedio[aux+x,t] <- vector[1]    
-				coeficienteDeCluster[aux+x,t] <- vector[2] 
+				averageShortestPathLengths[aux+x,t] <- vector[1]    
+				clusteringCoefficient[aux+x,t] <- vector[2] 
 				degree[aux+x,t] <- vector[3] 
 				assortativity[aux+x,t] <- vector[4] 
 				betweenness[aux+x,t] <- vector[5] 
-				desvioPadrao[aux+x,t] <- vector[6] 
-				maximo[aux+x,t] <- vector[7] 
-				minimo[aux+x,t] <- vector[8] 
+				standardDeviation[aux+x,t] <- vector[6] 
+				maximum[aux+x,t] <- vector[7] 
+				minimum[aux+x,t] <- vector[8] 
 				motifs3[aux+x,t] <- vector[9] 
 				motifs4[aux+x,t] <- vector[10] 
 				
@@ -120,29 +127,29 @@ classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D)
 		}
 	}
 	print("Rescaling values")
-	numCol<-length(caminhoMinimoMedio[1,])
-	caminhoMinimoMedio<-reschedule(caminhoMinimoMedio,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(caminhoMinimoMedio) <- paste('CMM',1:numCol)
-	coeficienteDeCluster<-reschedule(coeficienteDeCluster,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(coeficienteDeCluster) <- paste('CdC', 1:numCol)
-	desvioPadrao<-reschedule(desvioPadrao,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(desvioPadrao) <- paste('DP', 1:numCol)
-	maximo<-reschedule(maximo,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(maximo) <- paste('MAX', 1:numCol)
+	numCol<-length(averageShortestPathLengths[1,])
+	averageShortestPathLengths<-reschedule(averageShortestPathLengths,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	colnames(averageShortestPathLengths) <- paste('ASPL',1:numCol)
+	clusteringCoefficient<-reschedule(clusteringCoefficient,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	colnames(clusteringCoefficient) <- paste('CC', 1:numCol)
+	standardDeviation<-reschedule(standardDeviation,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	colnames(standardDeviation) <- paste('SD', 1:numCol)
+	maximum<-reschedule(maximum,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	colnames(maximum) <- paste('MAX', 1:numCol)
 	assortativity<-reschedule(assortativity,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(assortativity) <- paste('ASS', 1:numCol)
 	betweenness<-reschedule(betweenness,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(betweenness) <- paste('BET', 1:numCol)
 	degree<-reschedule(degree,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(degree) <- paste('DEG', 1:numCol)
-	minimo<-reschedule(minimo,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(minimo) <- paste('MIN', 1:numCol)
+	minimum<-reschedule(minimum,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
+	colnames(minimum) <- paste('MIN', 1:numCol)
 	motifs3<-reschedule(motifs3,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(motifs3) <- paste('MT3', 1:numCol)
 	motifs4<-reschedule(motifs4,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
 	colnames(motifs4) <- paste('MT4', 1:numCol)
 
-	listMatrix<-list(caminhoMinimoMedio,coeficienteDeCluster,desvioPadrao,maximo,assortativity,betweenness,degree,minimo,motifs3,motifs4)
+	listMatrix<-list(averageShortestPathLengths,clusteringCoefficient,standardDeviation,maximum,assortativity,betweenness,degree,minimum,motifs3,motifs4)
 	namesMeasure<-c("Average path length", "Cluster Coefficient", "Standard deviation", "Maximum", "Assortativity", "Betweenness", "Degree", "Minimal", "Motifs 3", "Motifs 4")
  
 
@@ -178,7 +185,7 @@ classification <- function(word, step, mRNA, lncRNA, sncRNA, graphic, graphic3D)
 	# colnames(classes) <- paste('CLASS') 
 
 	print("Creating data frame")
-	data<-cbind(assortativity,betweenness,caminhoMinimoMedio, coeficienteDeCluster,degree,minimo,maximo,desvioPadrao,motifs3,motifs4)
+	data<-cbind(assortativity,betweenness,averageShortestPathLengths, clusteringCoefficient,degree,minimum,maximum,standardDeviation,motifs3,motifs4)
 	data<-data.frame(data)
 	if(numClass==2){
 		data["CLASS"]<-factor(c("lncRNA"), levels = c("mRNA","lncRNA"));

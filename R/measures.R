@@ -10,7 +10,7 @@
 #'@details
 #'
 #'@return Vector with the results of the measurements in order:
-#'Average path length, cluster coefficient, degree, assortativity,
+#'Average shortest path length, clustering Coefficient, degree, assortativity,
 #'betweenness, standard deviation, maximum, minimum, number of motifs
 #'size 3 and number of motifs of size 4
 #'
@@ -36,7 +36,7 @@ measures <- function(graph){
 	measures<-c(measures,which.min(degree(graph, v=V(graph), normalized=FALSE)))
 	measures<-c(measures,(count_motifs(graph, size = 3)))
 	measures<-c(measures,(count_motifs(graph, size = 4)))
-	names(measures)[1]<-"APL"
+	names(measures)[1]<-"ASPL"
 	names(measures)[2]<-"CC"
 	names(measures)[3]<-"DEG"
 	names(measures)[4]<-"ASS"
