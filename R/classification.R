@@ -150,7 +150,7 @@ classification <- function(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D)
 	colnames(motifs4) <- paste('MT4', 1:numCol)
 
 	listMatrix<-list(averageShortestPathLengths,clusteringCoefficient,standardDeviation,maximum,assortativity,betweenness,degree,minimum,motifs3,motifs4)
-	namesMeasure<-c("Average path length", "Cluster Coefficient", "Standard deviation", "Maximum", "Assortativity", "Betweenness", "Degree", "Minimal", "Motifs 3", "Motifs 4")
+	namesMeasure<-c("Average shortest path length", "Cluster Coefficient", "Standard deviation", "Maximum", "Assortativity", "Betweenness", "Degree", "Minimal", "Motifs 3", "Motifs 4")
  
 
 	
