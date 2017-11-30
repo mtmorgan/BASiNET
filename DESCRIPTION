@@ -1,6 +1,6 @@
 Package: BASiNET
 Title: BASiNET - Classification of mRNA and lncRNA sequences using complex network theory
-Version: 0.99.0
+Version: 0.99.1
 Author: Eric Augusto Ito
 Maintainer: Eric Augusto Ito <ericaugustoito@hotmail.com>
 Description: It makes the creation of networks from sequences of RNA, with this is done the abstraction of characteristics of these networks with a methodology of threshold for the purpose of making a classification between the classes of the sequences.
