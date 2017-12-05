@@ -32,7 +32,6 @@ sncRNA - Directory of an FASTA file containing lncRNA sequences, this parameter 
 graphic - If TRUE is used to generate two-dimensional graphs between Thresholds x Measure. By default it is considered FALSE.
 
 graphic3D - If TRUE is the generation of three-dimensional graphs between the Thresholds x Measure1 x Measure2. By default it is considered FALSE.
-
 </div>
 <div style="text-align: justify">
 Within the BASiNET package there are two sample files, one for mRNA sequence and one for lncRNA sequences. For the example below you will use these two files.

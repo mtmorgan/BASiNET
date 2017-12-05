@@ -19,10 +19,7 @@ createGraph2D(matrix, numSeqMRNA, numSeqLNCRNA, nameMeasure)
 Returns the non-directed graph formed through the sequence
 }
 \description{
-A function that from a biological sequence generates a graph
-not directed having as vertices words, this being able to have its size
-parameter set by the' word 'parameter. The connections between words depend
-of the' step 'parameter that indicates the next connection to be formed.
+A function that from a biological sequence generates a graph not directed having as vertices words, this being able to have its size parameter set by the 'word' parameter. The connections between words depend of the 'step' parameter that indicates the next connection to be formed.
 }
 \details{
 

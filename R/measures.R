@@ -1,9 +1,7 @@
 #'@title Abstracting Characteristics on Network Structure
 #'@name measures
 #'
-#'@description Given a graph, it is made up of several
-#'features on the graph structure and returns a vector
-#'with the data obtained
+#'@description Given a graph, it is made up of several features on the graph structure and returns a vector with the data obtained
 #'
 #'@param graph The graph that will be measured
 #'
@@ -16,13 +14,11 @@
 #'
 #' @author Eric Augusto Ito
 #'
-#' @seealso 
+#' @seealso
 #'
 #' @examples
 #' 
 #' @import igraph
-
-
 
 measures <- function(graph){
 	measures<-c()

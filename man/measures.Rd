@@ -16,9 +16,7 @@ betweenness, standard deviation, maximum, minimum, number of motifs
 size 3 and number of motifs of size 4
 }
 \description{
-Given a graph, it is made up of several
-features on the graph structure and returns a vector
-with the data obtained
+Given a graph, it is made up of several features on the graph structure and returns a vector with the data obtained
 }
 \details{
 

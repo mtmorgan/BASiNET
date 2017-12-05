@@ -15,10 +15,7 @@ threshold(x, net)
 Returns the complex network with the cuts already made
 }
 \description{
-Given an integer value X, a
-cut, that is, edges that are cut will be assigned zero.
-This cut will be done in the network where the edges have a
-weight less than the value of X.
+Given an integer value X, a cut, that is, edges that are cut will be assigned zero. This cut will be done in the network where the edges have a weight less than the value of X.
 }
 \details{
 

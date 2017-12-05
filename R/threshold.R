@@ -1,10 +1,7 @@
 #'@title Applies threshold on the network from a value
 #'@name threshold
 #'
-#'@description Given an integer value X, a
-#'cut, that is, edges that are cut will be assigned zero.
-#'This cut will be done in the network where the edges have a
-#'weight less than the value of X.
+#'@description Given an integer value X, a cut, that is, edges that are cut will be assigned zero. This cut will be done in the network where the edges have a weight less than the value of X.
 #'
 #'@param x Value that would limit the edges
 #'@param net Network where the edges will be cut
@@ -15,14 +12,12 @@
 #'
 #' @author Eric Augusto Ito
 #'
-#' @seealso 
+#' @seealso
 #'
 #' @examples
 #'
 #'
 #' @import igraph
-
-
 
 threshold <- function(x, net){
 	# tamanho <- length(vetor<-net[1,])

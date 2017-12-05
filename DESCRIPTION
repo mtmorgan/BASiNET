@@ -1,18 +1,15 @@
 Package: BASiNET
 Title: BASiNET - Classification of mRNA and lncRNA sequences using complex network theory
-Version: 0.99.1
+Version: 0.99.2
 Author: Eric Augusto Ito
 Maintainer: Eric Augusto Ito <ericaugustoito@hotmail.com>
 Description: It makes the creation of networks from sequences of RNA, with this is done the abstraction of characteristics of these networks with a methodology of threshold for the purpose of making a classification between the classes of the sequences.
-Depends: R (>= 3.4.2), igraph, Biostrings, RWeka, randomForest, rgl
+Depends: R (>= 3.4.2)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: igraph, Biostrings, RWeka, randomForest, rgl
+Imports: igraph, Biostrings, RWeka, randomForest, rgl, rmcfs
 biocViews: Software, BiologicalQuestion, GenePrediction
 RoxygenNote: 6.0.1
-Suggests: knitr,
-    rmarkdown
-Additional_repositories: http://cran.us.r-project.org
+Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
-Repository: CRAN

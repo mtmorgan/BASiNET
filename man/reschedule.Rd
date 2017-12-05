@@ -19,10 +19,7 @@ reschedule(matrix, mRNA, lncRNA, sncRNA)
 Returns the array with the rescaled values
 }
 \description{
-Given the results the data is rescaled
-for values ​​between 0 and 1, so that the length of the sequences does not
-influence the results. The rescaling of the mRNA and lncRNA
-are made separately
+Given the results the data is rescaled for values ​​between 0 and 1, so that the length of the sequences does not influence the results. The rescaling of the mRNA and lncRNA are made separately
 }
 \details{
 

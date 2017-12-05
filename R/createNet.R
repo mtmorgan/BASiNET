@@ -1,10 +1,7 @@
 #'@title Creates an untargeted graph from a biological sequence
 #'@name createNet
 #'
-#'@description A function that from a biological sequence generates a graph
-#'not addressed having as words vertices, this being able to have its size
-#'parameter set by the' word 'parameter. The connections between words depend
-#'of the' step 'parameter that indicates the next connection to be formed
+#'@description A function that from a biological sequence generates a graph not addressed having as words vertices, this being able to have its size parameter set by the' word 'parameter. The connections between words depend of the' step 'parameter that indicates the next connection to be formed
 #'
 #'@param step It is the parameter that decides the step that will be taken to make a new connection
 #'@param word This parameter decides the size of the word that will be formed
@@ -20,9 +17,6 @@
 #'
 #'@examples
 #'
-
-
-
 
 createNet <- function(word, step, sequence){
 	aux<-""
