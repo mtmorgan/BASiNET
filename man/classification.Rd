@@ -25,7 +25,7 @@ classification(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D)
 Data.frame with the results of measures
 }
 \description{
-Given two distinct data sets, one of mnRNA and one of lncRNA. The classification of the data is done from the structure of the networks formed by the sequences. After this is done classifying with the J48 classifier and randomForest. It is also created in the current directory a file of type arff called' result 'with all values ​​so that it can be used later. There is also the graphic parameter that when TRUE generates graphs based on the results of each measure.
+Given two distinct data sets, one of mnRNA and one of lncRNA. The classification of the data is done from the structure of the networks formed by the sequences. After this is done classifying with the J48 classifier and randomForest. It is also created in the current directory a file of type arff called' result 'with all values so that it can be used later. There is also the graphic parameter that when TRUE generates graphs based on the results of each measure.
 }
 \details{
 

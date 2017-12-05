@@ -1,7 +1,7 @@
-#'@title Rescales the results between values ​​from 0 to 1
+#'@title Rescales the results between values from 0 to 1
 #'@name reschedule
 #'
-#'@description Given the results the data is rescaled for values ​​between 0 and 1, so that the length of the sequences does not influence the results. The rescaling of the mRNA and lncRNA are made separately
+#'@description Given the results the data is rescaled for values between 0 and 1, so that the length of the sequences does not influence the results. The rescaling of the mRNA and lncRNA are made separately
 #'
 #'@param matrix array with results
 #'@param mRNA Number of mRNA sequences

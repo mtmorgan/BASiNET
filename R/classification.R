@@ -1,7 +1,7 @@
 #'@title Performs the classification methodology using complex network theory
 #'@name classification
 #'
-#'@description Given two distinct data sets, one of mnRNA and one of lncRNA. The classification of the data is done from the structure of the networks formed by the sequences. After this is done classifying with the J48 classifier and randomForest. It is also created in the current directory a file of type arff called' result 'with all values ​​so that it can be used later. There is also the graphic parameter that when TRUE generates graphs based on the results of each measure.
+#'@description Given two distinct data sets, one of mnRNA and one of lncRNA. The classification of the data is done from the structure of the networks formed by the sequences. After this is done classifying with the J48 classifier and randomForest. It is also created in the current directory a file of type arff called' result 'with all values so that it can be used later. There is also the graphic parameter that when TRUE generates graphs based on the results of each measure.
 #'
 #'@param mRNA Directory where the file lies with the mRNA sequences
 #'@param lncRNA Directory where the file is located fasta with lncRNA sequences

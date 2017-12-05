@@ -2,7 +2,7 @@
 % Please edit documentation in R/reschedule.R
 \name{reschedule}
 \alias{reschedule}
-\title{Rescales the results between values ​​from 0 to 1}
+\title{Rescales the results between values from 0 to 1}
 \usage{
 reschedule(matrix, mRNA, lncRNA, sncRNA)
 }
@@ -19,7 +19,7 @@ reschedule(matrix, mRNA, lncRNA, sncRNA)
 Returns the array with the rescaled values
 }
 \description{
-Given the results the data is rescaled for values ​​between 0 and 1, so that the length of the sequences does not influence the results. The rescaling of the mRNA and lncRNA are made separately
+Given the results the data is rescaled for values between 0 and 1, so that the length of the sequences does not influence the results. The rescaling of the mRNA and lncRNA are made separately
 }
 \details{
 
