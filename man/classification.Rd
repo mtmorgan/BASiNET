@@ -4,7 +4,7 @@
 \alias{classification}
 \title{Performs the classification methodology using complex network theory}
 \usage{
-classification(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D)
+classification(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D, classifier)
 }
 \arguments{
 \item{mRNA}{Directory where the file lies with the mRNA sequences}
@@ -20,6 +20,8 @@ classification(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D)
 \item{graphic}{TRUE or FALSE for graphics generation. As default graphic gets FALSE}
 
 \item{graphic3D}{TRUE or FALSE for 3D graphics generation. As default graphic3D gets FALSE}
+
+\item{classifier}{By default the classifier is J48, but the user can choose to use randomForest by configuring as classifier = "RF"}
 }
 \value{
 Data.frame with the results of measures
@@ -31,6 +33,7 @@ Given two distinct data sets, one of mnRNA and one of lncRNA. The classification
 
 }
 \examples{
+#The sequences and sequences2 files have some sequences from the data set of the species Sus scrofa used by the article (LI, Aimin; ZHANG, Junying; ZHOU, Zhongyin, Plek: a tool for predicting long non-coding rnas and messenger rnas based on an improved k-mer scheme BMC bioinformatics, BioMed Central, 2014)
 arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
 arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
 classification(mRNA = arqSeqMRNA, lncRNA = arqSeqLNCRNA, word = 3, step = 3, graphic = TRUE, graphic3D = TRUE)

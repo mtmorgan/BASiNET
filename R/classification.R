@@ -10,6 +10,7 @@
 #'@param sncRNA Directory where the file is located fasta with the sncRNA sequences (OPTIONAL)
 #'@param graphic TRUE or FALSE for graphics generation. As default graphic gets FALSE
 #'@param graphic3D TRUE or FALSE for 3D graphics generation. As default graphic3D gets FALSE
+#'@param classifier By default the classifier is J48, but the user can choose to use randomForest by configuring as classifier = "RF"
 #'
 #' @details
 #'
@@ -20,6 +21,7 @@
 #' @seealso
 #'
 #' @examples
+#' #The sequences and sequences2 files have some sequences from the data set of the species Sus scrofa used by the article (LI, Aimin; ZHANG, Junying; ZHOU, Zhongyin, Plek: a tool for predicting long non-coding rnas and messenger rnas based on an improved k-mer scheme BMC bioinformatics, BioMed Central, 2014)
 #' arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
 #' arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
 #' classification(mRNA = arqSeqMRNA, lncRNA = arqSeqLNCRNA, word = 3, step = 3, graphic = TRUE, graphic3D = TRUE)
@@ -30,8 +32,17 @@
 #' @import randomForest
 #' @export
 
-classification <- function(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D){
+classification <- function(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D, classifier){
 
+
+	if(missing(classifier)){
+		classifier<-"J48"
+	}
+
+	if((classifier!="RF")&&(classifier!="J48")){
+		print("INVALID CLASSIFIER! Classifier configured for J48")
+		classifier<-"J48"
+	}
 	if(missing(word)){
 		word<-3
 	}
@@ -198,17 +209,23 @@ classification <- function(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D)
 	data[is.na(data)] <- 0
 	rmcfs::write.arff(data, file = "Result.arff")
 	print("Result.arff file generated in the current R directory")
-	print("Sorting the data with the J48")
-	obj <- J48(CLASS ~ ., data = data)
-	result <- evaluate_Weka_classifier(obj, numFolds = 10, complexity = TRUE, seed = 1, class = TRUE)
-	print(obj)
-	print(result)
-	# plot(obj)
-	print("Sorting the data with the Random Forest")
-    set.seed(1)
-	rf <- randomForest(data[,1:length(data[1,])], data[,"CLASS"])
-	print(rf)
-	print(getTree(randomForest(data[,-40], data[,5], ntree=10), 3, labelVar=TRUE))
+
+	if(classifier=="J48"){
+		print("Sorting the data with the J48")
+		obj <- J48(CLASS ~ ., data = data)
+		result <- evaluate_Weka_classifier(obj, numFolds = 10, complexity = TRUE, seed = 1, class = TRUE)
+		print(obj)
+		print(result)
+		# plot(obj)
+	}
+
+	if(classifier=="RF"){
+		print("Sorting the data with the Random Forest")
+	    set.seed(1)
+		rf <- randomForest(data[,1:length(data[1,])], data[,"CLASS"])
+		print(rf)
+		print(getTree(randomForest(data[,-40], data[,5], ntree=10), 3, labelVar=TRUE))
+	}
 
 	return(invisible(data))
 }
