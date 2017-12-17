@@ -28,7 +28,7 @@ createGraph3D <- function(matrix1, matrix2, numSeqMRNA, numSeqLNCRNA, nameMeasur
 
 	somador<-(1/(length(matrix1[1,])-1))
 	threshold<-seq(0,1,somador)
-	open3d(useNULL=TRUE)
+	open3d()
 	plot3d(matrix1[1,],matrix2[1,], threshold, xlab=nameMeasure1, ylab=nameMeasure2, zlab="Threshold", col=c("blue"), type="l2")
 	for(i in 2:length(matrix1[,1])){
 		if(i<=numSeqMRNA){
