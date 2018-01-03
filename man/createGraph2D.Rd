@@ -2,7 +2,7 @@
 % Please edit documentation in R/createGraph2D.R
 \name{createGraph2D}
 \alias{createGraph2D}
-\title{Creates an undirected graph from a biological sequence}
+\title{Creates a two-dimensional graph between a measure and the threshold}
 \usage{
 createGraph2D(matrix, numSeqMRNA, numSeqLNCRNA, nameMeasure)
 }
@@ -15,20 +15,8 @@ createGraph2D(matrix, numSeqMRNA, numSeqLNCRNA, nameMeasure)
 
 \item{nameMeasure}{name of the measure to put in the title of the graph}
 }
-\value{
-Returns the non-directed graph formed through the sequence
-}
 \description{
-A function that from a biological sequence generates a graph not directed having as vertices words, this being able to have its size parameter set by the 'word' parameter. The connections between words depend of the 'step' parameter that indicates the next connection to be formed.
-}
-\details{
-
-}
-\examples{
-
-}
-\seealso{
-
+For an analysis of each measure, the createGraph2D () function was created in order to visualize the behavior of each measurement in relation to the threshold. This function creates a graph (Measure x Threshold) from an array, mRNA sequences are given the blue color, the lncRNA sequences are given a red color. In cases where there is a third class this will be given the green color
 }
 \author{
 Eric Augusto Ito

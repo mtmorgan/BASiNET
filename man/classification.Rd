@@ -27,19 +27,15 @@ classification(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D, classifier)
 Data.frame with the results of measures
 }
 \description{
-Given two distinct data sets, one of mnRNA and one of lncRNA. The classification of the data is done from the structure of the networks formed by the sequences. After this is done classifying with the J48 classifier and randomForest. It is also created in the current directory a file of type arff called' result 'with all values so that it can be used later. There is also the graphic parameter that when TRUE generates graphs based on the results of each measure.
-}
-\details{
-
+Given two distinct data sets, one of mnRNA and one of lncRNA. 
+The classification of the data is done from the structure of the networks formed by the sequences. 
+After this is done classifying with the J48 classifier and randomForest. 
+It is also created in the current directory a file of type arff called' result 'with all values so that it can be used later.
 }
 \examples{
-#The sequences and sequences2 files have some sequences from the data set of the species Sus scrofa used by the article (LI, Aimin; ZHANG, Junying; ZHOU, Zhongyin, Plek: a tool for predicting long non-coding rnas and messenger rnas based on an improved k-mer scheme BMC bioinformatics, BioMed Central, 2014)
 arqSeqMRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
 arqSeqLNCRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
-classification(mRNA = arqSeqMRNA, lncRNA = arqSeqLNCRNA, word = 3, step = 3, graphic = TRUE, graphic3D = TRUE)
-
-}
-\seealso{
+classification(mRNA=arqSeqMRNA,lncRNA=arqSeqLNCRNA,word=3,step=3,graphic=FALSE,graphic3D=FALSE)
 
 }
 \author{

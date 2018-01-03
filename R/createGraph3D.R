@@ -1,7 +1,7 @@
-#'@title Creates an untargeted graph from a biological sequence
+#'@title Creates a three-dimensional chart between two measurements and the threshold
 #'@name createGraph3D
 #'
-#'@description A function that from a biological sequence generates a graph not addressed having as words vertices, this being able to have its size parameter set by the' word 'parameter. The connections between words depend of the' step 'parameter that indicates the next connection to be formed
+#'@description For an analysis of each measure, the createGraph2D () function was created in order to visualize the behavior of each measurement in relation to the threshold. This function creates a graph (Measure x Measure x Threshold) from two arrays, mRNA sequences are given the blue color, the lncRNA sequences are given a red color. In cases where there is a third class this will be given the green color
 #'
 #'@param matrix1 matrix of the first measure for the creation of the three-dimensional chart
 #'@param matrix2 matrix of the second measure for the creation of the three-dimensional chart
@@ -10,15 +10,7 @@
 #'@param nameMeasure1 name of the first measure to put in the title of the graph
 #'@param nameMeasure2 name of the second measure to put in the title of the graph
 #'
-#'@details
-#'
-#'@return Returns the non-directed graph formed through the sequence
-#'
 #' @author Eric Augusto Ito
-#'
-#' @seealso 
-#'
-#' @examples
 #'
 #' @import rgl
 

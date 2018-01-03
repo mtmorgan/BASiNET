@@ -7,15 +7,11 @@
 #'@param word This parameter decides the size of the word that will be formed
 #'@param sequence It is a vector that represents the sequence
 #'
-#'@details
 #'
 #'@return Returns the non-directed graph formed through the sequence
 #'
 #' @author Eric Augusto Ito
 #'
-#' @seealso 
-#'
-#'@examples
 #'
 
 createNet <- function(word, step, sequence){

@@ -8,15 +8,11 @@
 #'@param lncRNA Number of lncRNA sequences
 #'@param sncRNA Number of sncRNA sequences
 #'
-#'@details
 #'
 #'@return Returns the array with the rescaled values
 #'
 #' @author Eric Augusto Ito
 #'
-#' @seealso
-#'
-#' @examples
 #'
 
 

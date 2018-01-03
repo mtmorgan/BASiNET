@@ -6,15 +6,11 @@
 #'@param x Value that would limit the edges
 #'@param net Network where the edges will be cut
 #'
-#'@details
 #'
 #'@return Returns the complex network with the cuts already made
 #'
 #' @author Eric Augusto Ito
 #'
-#' @seealso
-#'
-#' @examples
 #'
 #'
 #' @import igraph

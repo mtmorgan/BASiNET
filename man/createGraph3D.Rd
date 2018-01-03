@@ -2,7 +2,7 @@
 % Please edit documentation in R/createGraph3D.R
 \name{createGraph3D}
 \alias{createGraph3D}
-\title{Creates an untargeted graph from a biological sequence}
+\title{Creates a three-dimensional chart between two measurements and the threshold}
 \usage{
 createGraph3D(matrix1, matrix2, numSeqMRNA, numSeqLNCRNA, nameMeasure1,
   nameMeasure2)
@@ -20,20 +20,8 @@ createGraph3D(matrix1, matrix2, numSeqMRNA, numSeqLNCRNA, nameMeasure1,
 
 \item{nameMeasure2}{name of the second measure to put in the title of the graph}
 }
-\value{
-Returns the non-directed graph formed through the sequence
-}
 \description{
-A function that from a biological sequence generates a graph not addressed having as words vertices, this being able to have its size parameter set by the' word 'parameter. The connections between words depend of the' step 'parameter that indicates the next connection to be formed
-}
-\details{
-
-}
-\examples{
-
-}
-\seealso{
-
+For an analysis of each measure, the createGraph2D () function was created in order to visualize the behavior of each measurement in relation to the threshold. This function creates a graph (Measure x Measure x Threshold) from two arrays, mRNA sequences are given the blue color, the lncRNA sequences are given a red color. In cases where there is a third class this will be given the green color
 }
 \author{
 Eric Augusto Ito

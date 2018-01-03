@@ -5,20 +5,17 @@
 #'
 #'@param graph The graph that will be measured
 #'
-#'@details
 #'
-#'@return Vector with the results of the measurements in order:
+#'@return Return a vector with the results of the measurements in order:
 #'Average shortest path length, clustering Coefficient, degree, assortativity,
 #'betweenness, standard deviation, maximum, minimum, number of motifs
 #'size 3 and number of motifs of size 4
 #'
 #' @author Eric Augusto Ito
 #'
-#' @seealso
-#'
-#' @examples
 #' 
 #' @import igraph
+#' @importFrom stats sd
 
 measures <- function(graph){
 	measures<-c()

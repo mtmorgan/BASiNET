@@ -10,22 +10,13 @@ measures(graph)
 \item{graph}{The graph that will be measured}
 }
 \value{
-Vector with the results of the measurements in order:
+Return a vector with the results of the measurements in order:
 Average shortest path length, clustering Coefficient, degree, assortativity,
 betweenness, standard deviation, maximum, minimum, number of motifs
 size 3 and number of motifs of size 4
 }
 \description{
 Given a graph, it is made up of several features on the graph structure and returns a vector with the data obtained
-}
-\details{
-
-}
-\examples{
-
-}
-\seealso{
-
 }
 \author{
 Eric Augusto Ito
