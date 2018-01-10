@@ -37,10 +37,10 @@ graphic3D - If TRUE is the generation of three-dimensional graphs between the Th
 Within the BASiNET package there are two sample files, one for mRNA sequence and one for lncRNA sequences. For the example below you will use these two files.
 </div>
 Defining parameters:
-```
-word<-3
+```{r}
+word <- 3
 
-step<-1
+step <- 1
 
 mRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
 
