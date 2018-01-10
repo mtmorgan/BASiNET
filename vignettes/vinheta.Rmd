@@ -39,17 +39,13 @@ Within the BASiNET package there are two sample files, one for mRNA sequence and
 Defining parameters:
 ```{r}
 word <- 3
-
 step <- 1
-
 mRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
-
 lncRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
-
-library(BASiNET) #loading package
-
-classification(word, step, mRNA, lncRNA, graphic=TRUE, graphic3D=TRUE) #executing the function with the parameters defined above and with the visualization of the 2D and 3D graphs of the measurements
+library(BASiNET)
+classification(mRNA,lncRNA)
 ```
+
 <div style="text-align: justify">
 After the completion of the function the results for J48 and Random Forest will be shown. For example data the results are J48 = 95.2381% hit, Random Forest = 4.76% error.
 

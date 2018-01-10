@@ -10,9 +10,10 @@
 #'@param nameMeasure1 name of the first measure to put in the title of the graph
 #'@param nameMeasure2 name of the second measure to put in the title of the graph
 #'
-#' @author Eric Augusto Ito
+#'@return Show a graphic three-dimensional
+#'@author Eric Augusto Ito
 #'
-#' @import rgl
+#'@import rgl
 
 
 

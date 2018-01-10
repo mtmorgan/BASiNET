@@ -8,12 +8,13 @@
 #'@param numSeqLNCRNA number of lncRNA sequences
 #'@param nameMeasure name of the measure to put in the title of the graph
 #'
-#' @author Eric Augusto Ito
+#'@return Show a graphic two-dimensional
+#'@author Eric Augusto Ito
 #'
 #'
-#' @import igraph
-#' @importFrom grDevices dev.new
-#' @importFrom graphics lines plot title
+#'@import igraph
+#'@importFrom grDevices dev.new
+#'@importFrom graphics lines plot title
 
 
 createGraph2D <- function(matrix, numSeqMRNA,numSeqLNCRNA, nameMeasure){
