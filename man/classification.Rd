@@ -4,24 +4,25 @@
 \alias{classification}
 \title{Performs the classification methodology using complex network theory}
 \usage{
-classification(mRNA, lncRNA, word, step, sncRNA, graphic, graphic3D, classifier)
+classification(mRNA, lncRNA, word = 3, step = 1, sncRNA, graphic, graphic3D,
+  classifier = c("J48", "RF"))
 }
 \arguments{
-\item{mRNA}{Directory where the file lies with the mRNA sequences}
+\item{mRNA}{Directory where the file .FASTA lies with the mRNA sequences}
 
 \item{lncRNA}{Directory where the file is located fasta with lncRNA sequences}
 
-\item{word}{Size of the word to parse. By default the word parameter is set to 3}
+\item{word}{Integer that defines the size of the word to parse. By default the word parameter is set to 3}
 
-\item{step}{Determines the distance that will be traversed in the sequences for creating a new connection. By default the step parameter is set to 1}
+\item{step}{Integer that determines the distance that will be traversed in the sequences for creating a new connection. By default the step parameter is set to 1}
 
 \item{sncRNA}{Directory where the file is located fasta with the sncRNA sequences (OPTIONAL)}
 
-\item{graphic}{TRUE or FALSE for graphics generation. As default graphic gets FALSE}
+\item{graphic}{Parameter of the logical type, TRUE or FALSE for graphics generation. As default graphic gets FALSE}
 
-\item{graphic3D}{TRUE or FALSE for 3D graphics generation. As default graphic3D gets FALSE}
+\item{graphic3D}{Parameter of the logical type, TRUE or FALSE for 3D graphics generation. As default graphic3D gets FALSE}
 
-\item{classifier}{By default the classifier is J48, but the user can choose to use randomForest by configuring as classifier = "RF"}
+\item{classifier}{Character Parameter. By default the classifier is J48, but the user can choose to use randomForest by configuring as classifier = "RF"}
 }
 \value{
 Data.frame with the results of measures

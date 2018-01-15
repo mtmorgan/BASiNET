@@ -3,8 +3,8 @@
 #'
 #'@description Given an integer value X, a cut, that is, edges that are cut will be assigned zero. This cut will be done in the network where the edges have a weight less than the value of X.
 #'
-#'@param x Value that would limit the edges
-#'@param net Network where the edges will be cut
+#'@param x Integer value that would limit the edges
+#'@param net Complex network where the edges will be cut
 #'
 #'
 #'@return Returns the complex network with the cuts already made

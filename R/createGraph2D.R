@@ -4,11 +4,10 @@
 #'@description For an analysis of each measure, the createGraph2D () function was created in order to visualize the behavior of each measurement in relation to the threshold. This function creates a graph (Measure x Threshold) from an array, mRNA sequences are given the blue color, the lncRNA sequences are given a red color. In cases where there is a third class this will be given the green color
 #'
 #'@param matrix matrix of the measure for the creation of two-dimensional graph
-#'@param numSeqMRNA number of mRNA sequences
-#'@param numSeqLNCRNA number of lncRNA sequences
-#'@param nameMeasure name of the measure to put in the title of the graph
+#'@param numSeqMRNA Integer number of mRNA sequences
+#'@param numSeqLNCRNA Integer number of lncRNA sequences
+#'@param nameMeasure Character Parameter that defines the name of the measure to put in the title of the graph
 #'
-#'@return Show a graphic two-dimensional
 #'@author Eric Augusto Ito
 #'
 #'
@@ -40,5 +39,5 @@ createGraph2D <- function(matrix, numSeqMRNA,numSeqLNCRNA, nameMeasure){
 	}
 	# legend((length(matrix[1,])-40), matrix[which.max(matrix)], c(1:2), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2)
 	# dev.off()
-	return()
+
 }

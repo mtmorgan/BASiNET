@@ -7,13 +7,13 @@
 reschedule(matrix, mRNA, lncRNA, sncRNA)
 }
 \arguments{
-\item{matrix}{array with results}
+\item{matrix}{Array with results numerics}
 
-\item{mRNA}{Number of mRNA sequences}
+\item{mRNA}{Integer number of mRNA sequences}
 
-\item{lncRNA}{Number of lncRNA sequences}
+\item{lncRNA}{Integer number of lncRNA sequences}
 
-\item{sncRNA}{Number of sncRNA sequences}
+\item{sncRNA}{Integer number of sncRNA sequences}
 }
 \value{
 Returns the array with the rescaled values

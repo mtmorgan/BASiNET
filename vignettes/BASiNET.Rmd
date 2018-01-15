@@ -38,8 +38,6 @@ Within the BASiNET package there are two sample files, one for mRNA sequence and
 </div>
 Defining parameters:
 ```{r}
-word <- 3
-step <- 1
 mRNA <- system.file("extdata", "sequences2.fasta", package = "BASiNET")
 lncRNA <- system.file("extdata", "sequences.fasta", package = "BASiNET")
 library(BASiNET)

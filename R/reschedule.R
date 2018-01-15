@@ -3,10 +3,10 @@
 #'
 #'@description Given the results the data is rescaled for values between 0 and 1, so that the length of the sequences does not influence the results. The rescaling of the mRNA and lncRNA are made separately
 #'
-#'@param matrix array with results
-#'@param mRNA Number of mRNA sequences
-#'@param lncRNA Number of lncRNA sequences
-#'@param sncRNA Number of sncRNA sequences
+#'@param matrix Array with results numerics
+#'@param mRNA Integer number of mRNA sequences
+#'@param lncRNA Integer number of lncRNA sequences
+#'@param sncRNA Integer number of sncRNA sequences
 #'
 #'
 #'@return Returns the array with the rescaled values

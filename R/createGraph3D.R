@@ -5,12 +5,11 @@
 #'
 #'@param matrix1 matrix of the first measure for the creation of the three-dimensional chart
 #'@param matrix2 matrix of the second measure for the creation of the three-dimensional chart
-#'@param numSeqMRNA number of mRNA sequences
-#'@param numSeqLNCRNA number of lncRNA sequences
-#'@param nameMeasure1 name of the first measure to put in the title of the graph
-#'@param nameMeasure2 name of the second measure to put in the title of the graph
+#'@param numSeqMRNA Integer number of mRNA sequences
+#'@param numSeqLNCRNA Integer number of lncRNA sequences
+#'@param nameMeasure1 Character Parameter that defines the name of the first measure to put in the title of the graph
+#'@param nameMeasure2 Character Parameter that defines the name of the second measure to put in the title of the graph
 #'
-#'@return Show a graphic three-dimensional
 #'@author Eric Augusto Ito
 #'
 #'@import rgl
@@ -35,5 +34,4 @@ createGraph3D <- function(matrix1, matrix2, numSeqMRNA, numSeqLNCRNA, nameMeasur
 		}
 	}
 
-	return()
 }

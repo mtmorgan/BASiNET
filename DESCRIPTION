@@ -1,10 +1,10 @@
 Package: BASiNET
 Title: BASiNET - Classification of mRNA and lncRNA sequences using complex network theory
-Version: 0.99.8
+Version: 0.99.9
 Author: Eric Augusto Ito
 Maintainer: Eric Augusto Ito <ericaugustoito@hotmail.com>
 Description: It makes the creation of networks from sequences of RNA, with this is done the abstraction of characteristics of these networks with a methodology of threshold for the purpose of making a classification between the classes of the sequences. There are two data present in the BASiNET package, "sequences" and "sequences2" with 11 and 10 sequences respectively. These sequences were taken from the data set used in the article (LI, Aimin; ZHANG, Junying; ZHOU, Zhongyin, Plek: a tool for predicting long non-coding messages and based on an improved k-mer scheme BMC bioinformatics, BioMed Central, 2014). These sequences are used to run examples.
-Depends: R (>= 3.4.2)
+Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

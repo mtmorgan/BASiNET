@@ -7,7 +7,7 @@
 measures(graph)
 }
 \arguments{
-\item{graph}{The graph that will be measured}
+\item{graph}{The complex network that will be measured}
 }
 \value{
 Return a vector with the results of the measurements in order:

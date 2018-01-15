@@ -9,14 +9,11 @@ createGraph2D(matrix, numSeqMRNA, numSeqLNCRNA, nameMeasure)
 \arguments{
 \item{matrix}{matrix of the measure for the creation of two-dimensional graph}
 
-\item{numSeqMRNA}{number of mRNA sequences}
+\item{numSeqMRNA}{Integer number of mRNA sequences}
 
-\item{numSeqLNCRNA}{number of lncRNA sequences}
+\item{numSeqLNCRNA}{Integer number of lncRNA sequences}
 
-\item{nameMeasure}{name of the measure to put in the title of the graph}
-}
-\value{
-Show a graphic two-dimensional
+\item{nameMeasure}{Character Parameter that defines the name of the measure to put in the title of the graph}
 }
 \description{
 For an analysis of each measure, the createGraph2D () function was created in order to visualize the behavior of each measurement in relation to the threshold. This function creates a graph (Measure x Threshold) from an array, mRNA sequences are given the blue color, the lncRNA sequences are given a red color. In cases where there is a third class this will be given the green color

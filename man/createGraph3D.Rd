@@ -12,16 +12,13 @@ createGraph3D(matrix1, matrix2, numSeqMRNA, numSeqLNCRNA, nameMeasure1,
 
 \item{matrix2}{matrix of the second measure for the creation of the three-dimensional chart}
 
-\item{numSeqMRNA}{number of mRNA sequences}
+\item{numSeqMRNA}{Integer number of mRNA sequences}
 
-\item{numSeqLNCRNA}{number of lncRNA sequences}
+\item{numSeqLNCRNA}{Integer number of lncRNA sequences}
 
-\item{nameMeasure1}{name of the first measure to put in the title of the graph}
+\item{nameMeasure1}{Character Parameter that defines the name of the first measure to put in the title of the graph}
 
-\item{nameMeasure2}{name of the second measure to put in the title of the graph}
-}
-\value{
-Show a graphic three-dimensional
+\item{nameMeasure2}{Character Parameter that defines the name of the second measure to put in the title of the graph}
 }
 \description{
 For an analysis of each measure, the createGraph2D () function was created in order to visualize the behavior of each measurement in relation to the threshold. This function creates a graph (Measure x Measure x Threshold) from two arrays, mRNA sequences are given the blue color, the lncRNA sequences are given a red color. In cases where there is a third class this will be given the green color
