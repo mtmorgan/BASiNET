@@ -70,88 +70,58 @@ classification <- function(mRNA, lncRNA, word=3, step=1, sncRNA, graphic, graphi
 	motifs4 <- matrix(nrow=numSeq,ncol=1)
 
 	for(k in seq_len(numClass)){
-		
-		if(k==1){
+		if (k == 1) {
 			message("Analyzing mRNA from number: ")
-			aux<-0
 			seq<-seqMRNA
-		}else{
-			if(k==2){
-				message("Analyzing lncRNA from number: ")
-				seq<-seqLNCRNA
-				aux<-length(seqMRNA)
-			}else{
-				if(k==3){
-					message("Analyzing sncRNA from number: ")
-					seq<-seqSNCRNA
-					aux<-(length(seqMRNA)+length(seqLNCRNA))
-				}
-			}
+		} else if (k == 2) {
+			message("Analyzing lncRNA from number: ")
+			seq<-seqLNCRNA
+		} else {			# k == 3
+			message("Analyzing sncRNA from number: ")
+			seq<-seqSNCRNA
 		}
 
 		for(x in seq_along(seq)){
 			message(x)
-			limitThreshold<-0
 			sequence<-strsplit(toString(seq[x]),split='')
 			sequence<-sequence[[1]]
 			net<-createNet(word, step, sequence)
 			limitThreshold<-max(net[])
 
-			for(t in seq_len(limitThreshold)){
-				if(t>length(averageShortestPathLengths[1,])){
-					averageShortestPathLengths <- cbind(averageShortestPathLengths,matrix(nrow=numSeq,ncol=1))
-					clusteringCoefficient <- cbind(clusteringCoefficient,matrix(nrow=numSeq,ncol=1))
-					standardDeviation <- cbind(standardDeviation,matrix(nrow=numSeq,ncol=1))
-					maximum <- cbind(maximum,matrix(nrow=numSeq,ncol=1))
-					assortativity <- cbind(assortativity,matrix(nrow=numSeq,ncol=1))
-					betweenness <- cbind(betweenness,matrix(nrow=numSeq,ncol=1))
-					degree <-cbind(degree,matrix(nrow=numSeq,ncol=1))
-					minimum <- cbind(minimum,matrix(nrow=numSeq,ncol=1))
-					motifs3 <- cbind(motifs3,matrix(nrow=numSeq,ncol=1))
-					motifs4 <- cbind(motifs4,matrix(nrow=numSeq,ncol=1))
-				}
-
-				net<-threshold(t, net)
-				vector<-measures(net)
-				averageShortestPathLengths[aux+x,t] <- vector[1]
-				clusteringCoefficient[aux+x,t] <- vector[2]
-				degree[aux+x,t] <- vector[3] 
-				assortativity[aux+x,t] <- vector[4] 
-				betweenness[aux+x,t] <- vector[5] 
-				standardDeviation[aux+x,t] <- vector[6] 
-				maximum[aux+x,t] <- vector[7] 
-				minimum[aux+x,t] <- vector[8] 
-				motifs3[aux+x,t] <- vector[9] 
-				motifs4[aux+x,t] <- vector[10] 
-				
-			}
+			n_new_columns <- limitThreshold - ncol(averageShortestPathLengths)
+			m_new <- matrix(nrow = numSeq, ncol = n_new_columns)
+			averageShortestPathLengths <- cbind(averageShortestPathLengths, m_new)
+			clusteringCoefficient <- cbind(clusteringCoefficient, m_new)
+			...
+			
+			vector <- sapply(seq_len(limitThreshold), function(t) {
+			    		net<<-threshold(t, net)
+			    		measures(net)
+			})
+			
+			cidx <- seq_len(nrow(vector))
+			averageShortestPathLengths[aux + x, cidx] <- vector[1,]
+			clusteringCoefficient[aux+x, cidx] <- vector[2,]
+			...
 		}
 	}
 	message("Rescaling values")
-	numCol<-length(averageShortestPathLengths[1,])
-	averageShortestPathLengths<-reschedule(averageShortestPathLengths,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(averageShortestPathLengths) <- paste('ASPL',seq_len(numCol))
-	clusteringCoefficient<-reschedule(clusteringCoefficient,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(clusteringCoefficient) <- paste('CC', seq_len(numCol))
-	standardDeviation<-reschedule(standardDeviation,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(standardDeviation) <- paste('SD', seq_len(numCol))
-	maximum<-reschedule(maximum,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(maximum) <- paste('MAX', seq_len(numCol))
-	assortativity<-reschedule(assortativity,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(assortativity) <- paste('ASS', seq_len(numCol))
-	betweenness<-reschedule(betweenness,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(betweenness) <- paste('BET', seq_len(numCol))
-	degree<-reschedule(degree,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(degree) <- paste('DEG', seq_len(numCol))
-	minimum<-reschedule(minimum,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(minimum) <- paste('MIN', seq_len(numCol))
-	motifs3<-reschedule(motifs3,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(motifs3) <- paste('MT3', seq_len(numCol))
-	motifs4<-reschedule(motifs4,length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA))
-	colnames(motifs4) <- paste('MT4', seq_len(numCol))
-
-	listMatrix<-list(averageShortestPathLengths,clusteringCoefficient,standardDeviation,maximum,assortativity,betweenness,degree,minimum,motifs3,motifs4)
-	namesMeasure<-c("Average shortest path length", "Cluster Coefficient", "Standard deviation", "Maximum", "Assortativity", "Betweenness", "Degree", "Minimal", "Motifs 3", "Motifs 4")
+	numCol<-ncol(averageShortestPathLengths)
+	
+	listMatrix<-list(
+	    averageShortestPathLengths,clusteringCoefficient,
+	    standardDeviation,maximum,assortativity,betweenness,degree,
+	    minimum,motifs3,motifs4)
+	listMatrix <- lapply(
+	    listMatrix, reschedule,
+	    length(seqMRNA),length(seqLNCRNA),length(seqSNCRNA)
+	)
+	
+	namesMeasure<-c(
+	    "Average shortest path length", "Cluster Coefficient",
+	    "Standard deviation", "Maximum", "Assortativity",
+	    "Betweenness", "Degree", "Minimal", "Motifs 3", "Motifs 4"
+	)
  
 
 	

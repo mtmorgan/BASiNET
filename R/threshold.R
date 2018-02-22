@@ -25,9 +25,7 @@ threshold <- function(x, net){
 	# 	}
 	# }
 
-	if(x==1){
-
-	}else{
+	if(x!=1){
 		matriz<-as_adjacency_matrix(net)
 		matriz[(matriz==(x-1))]<-0
 		net<-graph_from_adjacency_matrix(matriz, mode="undirected")
